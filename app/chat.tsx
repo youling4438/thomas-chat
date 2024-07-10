@@ -14,9 +14,10 @@ const endpoint = process.env["NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT"] || "end-point"
 const apiKey = process.env["NEXT_PUBLIC_AZURE_OPENAI_API_KEY"] || "api-key";
 const deployment = process.env["NEXT_PUBLIC_AZURE_OPENAI_DEPLOYMENT_NAME"] || "deployment-name";
 
-function MyComponent() {
+function Chat() {
     const [response, setResponse] = useState('');
     const handleSubmit = async (event: any) => {
+        setResponse('');
         event.preventDefault();
         const apiVersion = "2024-05-01-preview";
         try {
@@ -38,17 +39,19 @@ function MyComponent() {
             }
         } catch (error) {
             console.error(error);
+            setResponse(JSON.stringify(error) || '')
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="prompt">Prompt:</label>
-            <input type="text" id="prompt" name="prompt" />
-            <button type="submit">Submit</button>
-            {response ? <MarkdownRenderer content={response}></MarkdownRenderer> : <h3>Ai的回答会显示到这儿</h3>}
+            <label htmlFor="prompt" className='bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent'>请输入你的问题:</label>
+            <textarea id="prompt" name="prompt" className="w-full max-w-lg p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Type your message here..."></textarea>
+            <button type="submit" className="btn btn-outline btn-info">发送</button>
+            <span className='tips bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent'>AI助手的回答会显示到下面: </span>
+            {response ? <MarkdownRenderer content={response}></MarkdownRenderer> : <span className="loading loading-infinity loading-lg"></span>}
         </form>
     );
 }
 
-export default MyComponent;
+export default Chat;
