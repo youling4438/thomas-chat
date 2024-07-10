@@ -22,58 +22,6 @@ body {
 
 }
 
-/* 针对 Webkit 浏览器（如 Chrome, Safari） */
-::-webkit-scrollbar {
-  width: 8px;
-  /* 滚动条的宽度 */
-  height: 8px;
-  /* 横向滚动条的高度 */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  /* 滚动条轨道的背景色 */
-  border-radius: 10px;
-  /* 圆角 */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  /* 滚动条的颜色 */
-  border-radius: 10px;
-  /* 圆角 */
-}
-
-/* 滚动条在被悬停时的样式 */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #ffffff, #e7e7e7);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* 针对 Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

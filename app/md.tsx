@@ -10,7 +10,7 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {  
     return (
-        <div className="markdown shadow-xl rounded-lg">
+        <div className="markdown shadow-md">
             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
         </div>
     );
