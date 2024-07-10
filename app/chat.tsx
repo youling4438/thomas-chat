@@ -3,16 +3,16 @@ import { AzureOpenAI } from 'openai';
 import { useState } from 'react';
 import MarkdownRenderer from './md';
 
-const examplePrompts = [
-    "How are you today?",
-    "What is Azure OpenAI?",
-    "Why do children love dinosaurs?",
-    "Generate a proof of Euler's identity",
-    "Describe in single words only the good things that come into your mind about your mother.",
-];
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "end-point";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "api-key";
-const deployment = process.env["AZURE_OPENAI_DEPLOYMENT_NAME"] || "deployment-name";
+// const examplePrompts = [
+//     "How are you today?",
+//     "What is Azure OpenAI?",
+//     "Why do children love dinosaurs?",
+//     "Generate a proof of Euler's identity",
+//     "Describe in single words only the good things that come into your mind about your mother.",
+// ];
+const endpoint = process.env["NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT"] || "end-point";
+const apiKey = process.env["NEXT_PUBLIC_AZURE_OPENAI_API_KEY"] || "api-key";
+const deployment = process.env["NEXT_PUBLIC_AZURE_OPENAI_DEPLOYMENT_NAME"] || "deployment-name";
 
 function MyComponent() {
     const [response, setResponse] = useState('');
@@ -21,7 +21,6 @@ function MyComponent() {
         const apiVersion = "2024-05-01-preview";
         try {
             const prompt = event.target.prompt.value;
-            examplePrompts.push(prompt);
             const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment, dangerouslyAllowBrowser: true });
             const result = await client.chat.completions.create({
                 messages: [
@@ -47,7 +46,7 @@ function MyComponent() {
             <label htmlFor="prompt">Prompt:</label>
             <input type="text" id="prompt" name="prompt" />
             <button type="submit">Submit</button>
-            {response ? <MarkdownRenderer content={response}></MarkdownRenderer> : 'Ai的回答会显示到这儿'}
+            {response ? <MarkdownRenderer content={response}></MarkdownRenderer> : <h3>Ai的回答会显示到这儿</h3>}
         </form>
     );
 }
