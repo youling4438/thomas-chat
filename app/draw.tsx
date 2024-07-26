@@ -1,7 +1,17 @@
 'use client'
 import { AzureOpenAI } from 'openai';
 import { useState } from 'react';
-import { ImageGenerateParams } from 'openai/src/resources/images.js';
+export interface ImageGenerateParams {
+    prompt: string;
+  
+    model?: (string & {}) | 'dall-e-2' | 'dall-e-3' | null;
+    n?: number | null;
+    quality?: 'standard' | 'hd';
+    response_format?: 'url' | 'b64_json' | null;
+    size?: '256x256' | '512x512' | '1024x1024' | '1792x1024' | '1024x1792' | null;
+    style?: 'vivid' | 'natural' | null;
+    user?: string;
+  }
 
 const endpoint = process.env["NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT"] || "end-point";
 const apiKey = process.env["NEXT_PUBLIC_AZURE_OPENAI_API_KEY"] || "api-key";
