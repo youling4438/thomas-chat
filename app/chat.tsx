@@ -29,11 +29,11 @@ function Chat() {
                 });
                 for (const choice of result.choices) {
                     setResponse(choice.message.content || '');
-                    setLoading(false);
                 }
             } else {
                 setResponse('你似乎没有输入任何问题，༼ つ ◕_◕ ༽つ');
             }
+            setLoading(false);
         } catch (error) {
             console.error(error);
             setResponse(JSON.stringify(error) || '')
