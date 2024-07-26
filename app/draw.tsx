@@ -3,7 +3,6 @@ import { AzureOpenAI } from 'openai';
 import { useState } from 'react';
 export interface ImageGenerateParams {
     prompt: string;
-  
     model?: (string & {}) | 'dall-e-2' | 'dall-e-3' | null;
     n?: number | null;
     quality?: 'standard' | 'hd';
@@ -19,7 +18,8 @@ const deployment = process.env["NEXT_PUBLIC_AZURE_OPENAI_DALLE_DEPLOYMENT_NAME"]
 
 function Draw() {
     const [prompt, setPrompt] = useState('');
-    const [imageUrl, setImageUrl] = useState('/Dalle3.png');
+    const _index: number = Math.random() < 0.5 ? 0 : 1;
+    const [imageUrl, setImageUrl] = useState('/Dalle3_' + _index + '.png');
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (event: any) => {
