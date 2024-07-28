@@ -46,6 +46,7 @@ function Draw() {
             }
             setLoading(false);
         } catch (error) {
+            setImageUrl('/Dalle3_error.png');
             console.error(error);
             setLoading(false);
         }
@@ -54,16 +55,8 @@ function Draw() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="inputText" className='bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent'>描述要创建的图像。例如“西雅图天际线的水彩画”:</label>
-                <input
-                    id="inputText"
-                    type="text"
-                    style={{ display: 'block', margin: '20px 0' }}
-                    value={prompt}
-                    className="w-full max-w-lg p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="尝试一下DALL-E 3"
-                />
+                <label htmlFor="prompt" className='bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent'>描述要创建的图像。例如“西雅图天际线的水彩画”:</label>
+                <textarea id="prompt" value={prompt}  onChange={(e) => setPrompt(e.target.value)} name="prompt" className="w-full max-w-lg p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="尝试一下DALL-E 3"></textarea>
                 <button type="submit" disabled={loading} className="btn btn-outline btn-info">{loading ? '图片生成中...' : '生成图片'}</button>
                 <span className='tips bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent'>AI助手生成的图片会显示到下面: </span>
                 {imageUrl ? <div style={{ marginTop: '20px' }}>
